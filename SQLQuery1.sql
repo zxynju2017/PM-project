@@ -1,4 +1,4 @@
---jCREATE TABLE room_type(
+--CREATE TABLE room_type(
 --[type] varchar(6) primary key,
 --price float
 --)
