@@ -1,4 +1,4 @@
---CREATE TABLE room_type(
+--jCREATE TABLE room_type(
 --[type] varchar(6) primary key,
 --price float
 --)
@@ -76,22 +76,22 @@
 
 --CREATE FUNCTION MD5
 --    (
---      @src varchar(255) ,    -- Ô´×Ö·û´®
---      @type INT = 32        -- ¼ÓÃÜÀàĞÍ(16/32)£¬Ä¬ÈÏÖµ32
+--      @src varchar(255) ,    -- æºå­—ç¬¦ä¸²
+--      @type INT = 32        -- åŠ å¯†ç±»å‹(16/32)ï¼Œé»˜è®¤å€¼32
 --    )
 --RETURNS varchar(255)
 --    WITH EXECUTE AS CALLER
 --AS
 --    BEGIN
---        -- ´æ·Åmd5¼ÓÃÜ´®(ox)
+--        -- å­˜æ”¾md5åŠ å¯†ä¸²(ox)
 --        DECLARE @smd5 varchar(34)
---        -- ¼ÓÃÜ×Ö·û´®´Ë´¦ÓÃMD5¼ÓÃÜ
+--        -- åŠ å¯†å­—ç¬¦ä¸²æ­¤å¤„ç”¨MD5åŠ å¯†
 --        SET @smd5 = sys.fn_VarBinToHexStr(HASHBYTES('MD5', @src));
 --        IF @type = 16
---            SELECT  @smd5 = SUBSTRING(@smd5, 11, 16)   --16Î»
+--            SELECT  @smd5 = SUBSTRING(@smd5, 11, 16)   --16ä½
 --        ELSE
---            SELECT  @smd5 = SUBSTRING(@smd5, 3, 32)    --32Î»
---        -- ·µ»Ø¼ÓÃÜ´®£¬×ª´óĞ´
+--            SELECT  @smd5 = SUBSTRING(@smd5, 3, 32)    --32ä½
+--        -- è¿”å›åŠ å¯†ä¸²ï¼Œè½¬å¤§å†™
 --        RETURN UPPER(@smd5)
  
 --    END
@@ -104,12 +104,12 @@
 --            BEGIN
 --                DECLARE @uId varchar(15)
 --                DECLARE @uPassword varchar(32)
---                -- »ñÈ¡ÓÃ»§IDºÍÃÜÂë
+--                -- è·å–ç”¨æˆ·IDå’Œå¯†ç 
 --                SELECT  @uId = customer_id ,
 --                        @uPassword = [password]
 --                FROM    inserted
 
---                -- ¸üĞÂÃÜÂë
+--                -- æ›´æ–°å¯†ç 
 --                UPDATE  account
 --                SET     [password] = dbo.MD5(@uPassword, 32)
 --                WHERE   customer_id = @uId
@@ -179,12 +179,12 @@
 --            BEGIN
 --                DECLARE @uId varchar(15)
 --                DECLARE @uPassword varchar(32)
---                -- »ñÈ¡ÓÃ»§IDºÍÃÜÂë
+--                -- è·å–ç”¨æˆ·IDå’Œå¯†ç 
 --                SELECT  @uId = recept_id ,
 --                        @uPassword = [password]
 --                FROM    inserted
 
---                -- ¸üĞÂÃÜÂë
+--                -- æ›´æ–°å¯†ç 
 --                UPDATE  [stuff]
 --                SET     [password] = dbo.MD5(@uPassword, 32)
 --                WHERE   recept_id = @uId
